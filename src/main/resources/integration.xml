@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:integration="http://www.springframework.org/schema/integration"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <integration:gateway id="productGateway"
+                         service-interface="ru.gb.lesson8.ProductGateway"
+                         default-request-channel="inputChannelOne"
+                         default-reply-timeout="3000"
+    />
+
+    <integration:channel id="inputChannelOne"/>
+    <integration:service-activator input-channel="inputChannelOne">
+        <beans:bean class="ru.gb.lesson8.MyServiceActivator"/>
+    </integration:service-activator>
+</beans>
